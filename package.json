@@ -1,0 +1,39 @@
+{
+  "name": "forja-landing",
+  "version": "0.1.0",
+  "description": "Claude Code skill que construye landings cinemáticas con Seedance, anti-AI-slop critique y web audit integrados. Made by Carlos Domínguez.",
+  "keywords": [
+    "claude-code",
+    "claude-skill",
+    "landing-page",
+    "seedance",
+    "nextjs",
+    "forge",
+    "anti-ai-slop",
+    "cinematic"
+  ],
+  "homepage": "https://github.com/Carlos-Dominguez-faber/forja-landing#readme",
+  "bugs": {
+    "url": "https://github.com/Carlos-Dominguez-faber/forja-landing/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carlos-Dominguez-faber/forja-landing.git"
+  },
+  "type": "module",
+  "license": "MIT",
+  "author": "Carlos Domínguez <hola@carlosdominguez.com.mx> (https://carlosdominguez.com.mx)",
+  "bin": {
+    "forja-landing": "./bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "skill/",
+    "docs/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}
