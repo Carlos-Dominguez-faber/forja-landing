@@ -7,9 +7,19 @@ Comando principal del skill forja-landing. Enruta al route correcto.
 ```
 /forja build     → construye la landing de cero (entrevista → scaffold)
 /forja critique  → review anti-AI-slop (10 dimensiones)
+/forja polish    → aplica fixes de un /forja critique anterior
 /forja audit     → performance + a11y + SEO (estilo Lighthouse)
 /forja deploy    → ship a Vercel + custom domain
-/forja polish    → aplica fixes de un /forja critique anterior
+```
+
+**Flujo típico (end-to-end):**
+
+```
+/forja build → /forja critique → /forja polish → /forja audit → /forja deploy
+    ↓              ↓                  ↓              ↓              ↓
+  30 min        5 min              5 min          5 min         3 min
+
+= landing producida y shipeada en <1h desde 0
 ```
 
 ## Cómo funciona
@@ -18,6 +28,7 @@ Comando principal del skill forja-landing. Enruta al route correcto.
 2. Lee el route correspondiente:
    - `build` → `.claude/skills/forja-landing/routes/build.md`
    - `critique` → `.claude/skills/forja-landing/routes/critique.md`
+   - `polish` → `.claude/skills/forja-landing/routes/polish.md`
    - `audit` → `.claude/skills/forja-landing/routes/audit.md`
    - `deploy` → `.claude/skills/forja-landing/routes/deploy.md`
 3. Ejecuta las instrucciones del route
@@ -33,6 +44,7 @@ Mostrar las opciones:
 Elegí el comando:
   build     — construí una landing nueva (30-60 min)
   critique  — review anti-AI-slop (10 min)
+  polish    — aplicar fixes de critique (5 min)
   audit     — performance + a11y + SEO (5 min)
   deploy    — ship a Vercel (3 min)
 

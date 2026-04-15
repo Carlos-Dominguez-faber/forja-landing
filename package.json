@@ -1,6 +1,6 @@
 {
   "name": "forja-landing",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Claude Code skill que construye landings cinemáticas con Seedance, anti-AI-slop critique y web audit integrados. Made by Carlos Domínguez.",
   "keywords": [
     "claude-code",

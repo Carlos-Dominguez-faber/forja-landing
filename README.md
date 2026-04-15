@@ -97,11 +97,11 @@ La landing de Carlos fue construida con este skill: [carlosdominguez.com.mx](htt
 ## Roadmap
 
 - [x] v0.1 — install.js + SKILL.md base
-- [ ] v0.2 — Templates de componentes completos
-- [ ] v0.3 — `/forja build` end-to-end con entrevista guiada
-- [ ] v0.4 — `/forja critique` automatizado
-- [ ] v0.5 — `/forja audit` con checks reales
-- [ ] v0.6 — Modo alternativo: portfolio de dev (en vez de servicios)
+- [x] v0.2 — Templates de componentes completos
+- [x] v0.3 — Routes completos (build, critique, audit, deploy) + script Seedance + dispatcher
+- [x] v0.4 — `/forja polish` automático + auto-gen de reference image via OpenRouter
+- [ ] v0.5 — Modo alternativo: portfolio de dev (en vez de servicios)
+- [ ] v0.6 — Plug GHL / Resend para lead-magnet delivery automatizado
 - [ ] v1.0 — Publicación en npm + launch en Show HN / Product Hunt
 
 ---

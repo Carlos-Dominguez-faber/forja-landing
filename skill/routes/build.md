@@ -96,7 +96,18 @@ Secciones (en orden):
 Si el usuario tiene `MUAPI_API_KEY` y dijo sí al video:
 
 1. Pedir imagen de referencia (path local o URL https://)
-2. Si no tiene imagen, ofrecer generar una con prompt específico (via Pixa MCP, si disponible)
+2. **Si no tiene imagen, ofrecer auto-generarla:**
+   - Si tiene `OPENROUTER_API_KEY` en `.env.local`:
+     ```bash
+     python .claude/skills/forja-landing/scripts/generate_reference_image.py \
+       --vibe [artesano|minimal|bold|tech|premium] \
+       --subject "[descripción del subject, ej: forge workshop, product close-up]" \
+       --output public/hero/reference.jpg
+     ```
+   - Si no tiene OpenRouter key, sugerir:
+     - Instalar Pixa MCP si está disponible
+     - O usar Unsplash / Midjourney / Flux local / Nano Banana
+     - O seguir sin video (embers Canvas hace buen fallback cinematográfico)
 3. Ejecutar el script:
 
 ```bash
