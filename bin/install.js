@@ -63,6 +63,39 @@ mkdirSync(skillTarget, { recursive: true })
 cpSync(skillSrc, skillTarget, { recursive: true })
 console.log(`  ✓ Skill files copied.`)
 
+// ── Optionally copy component templates into src/ ─────────────────────────────
+
+const templatesSrc = join(pkgRoot, 'skill', 'templates')
+const srcAppDir = join(projectRoot, 'src', 'app')
+const featuresDir = join(projectRoot, 'src', 'features', 'landing')
+
+if (existsSync(srcAppDir) && !existsSync(featuresDir)) {
+  console.log(`  Installing component templates to src/features/landing/...`)
+  // Copy features
+  cpSync(join(templatesSrc, 'features', 'landing'), featuresDir, { recursive: true })
+  // Copy app-level files (skip if they exist to avoid clobbering)
+  const appFiles = ['layout.tsx', 'page.tsx', 'globals.css', 'sitemap.ts', 'robots.ts']
+  for (const f of appFiles) {
+    const target = join(srcAppDir, f)
+    const template = join(templatesSrc, 'app', f)
+    const backup = target + '.forja-backup'
+    if (existsSync(target) && !existsSync(backup)) {
+      cpSync(target, backup)
+    }
+    if (existsSync(template)) cpSync(template, target)
+  }
+  // API route
+  const apiDir = join(srcAppDir, 'api', 'lead')
+  if (!existsSync(apiDir)) mkdirSync(apiDir, { recursive: true })
+  cpSync(join(templatesSrc, 'app', 'api', 'lead', 'route.ts'), join(apiDir, 'route.ts'))
+
+  console.log(`  ✓ Component templates installed.`)
+  console.log(`    Originals backed up as *.forja-backup (if any).`)
+} else if (existsSync(featuresDir)) {
+  console.log(`  ⊘ src/features/landing/ already exists — skipping templates.`)
+  console.log(`    Delete it first if you want the fresh scaffold.`)
+}
+
 // ── Update skills-lock.json ───────────────────────────────────────────────────
 
 const lockPath = join(projectRoot, 'skills-lock.json')

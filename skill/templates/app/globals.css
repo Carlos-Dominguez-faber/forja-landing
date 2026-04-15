@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    background: #0a0a0b;
+    color: #f4f4f5;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-image:
+      radial-gradient(1200px 600px at 20% -10%, rgba(245, 158, 11, 0.08), transparent 60%),
+      radial-gradient(1000px 500px at 90% 10%, rgba(239, 68, 68, 0.05), transparent 55%);
+  }
+
+  ::selection {
+    background: rgba(245, 158, 11, 0.35);
+    color: #fffbe6;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #f59e0b 0%, #ef4444 100%);
+    border-radius: 10px;
+    border: 2px solid #0a0a0b;
+  }
+}
+
+@layer utilities {
+  .ember-text {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 40%, #ef4444 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(245, 158, 11, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245, 158, 11, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.95rem 1.5rem;
+    border-radius: 999px;
+    background: #f5a524;
+    color: #1a0f00;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    border: 1px solid #c97d0c;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 220, 140, 0.55),
+      inset 0 -8px 12px rgba(120, 60, 0, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.4),
+      0 8px 20px -10px rgba(245, 158, 11, 0.35);
+    transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.3s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.07);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 220, 140, 0.6),
+      inset 0 -8px 12px rgba(120, 60, 0, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.4),
+      0 14px 26px -10px rgba(245, 158, 11, 0.5);
+  }
+  .btn-primary:focus-visible {
+    outline: 2px solid #fbbf24;
+    outline-offset: 3px;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.02);
+    color: #f4f4f5;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+  .btn-secondary:focus-visible {
+    outline: 2px solid #fbbf24;
+    outline-offset: 3px;
+  }
+
+  .noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.65'/></svg>");
+  }
+
+  @keyframes ember-pulse {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  .animate-ember-pulse {
+    animation: ember-pulse 2.4s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-video {
+    display: none !important;
+  }
+}
