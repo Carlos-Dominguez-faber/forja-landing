@@ -13,7 +13,10 @@ import { fileURLToPath } from 'url'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const SKILL_NAME = 'forja-landing'
-const VERSION = '0.1.0'
+
+// Read version from package.json instead of hardcoding
+const selfPkg = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf8'))
+const VERSION = selfPkg.version
 
 const args = process.argv.slice(2)
 const cmd = args[0] ?? 'init'
@@ -33,7 +36,9 @@ if (cmd !== 'init') {
 const pkgRoot = resolve(__dirname, '..')
 const skillSrc = join(pkgRoot, 'skill')
 const projectRoot = process.cwd()
-const skillTarget = join(projectRoot, '.claude', 'skills', SKILL_NAME)
+const dotClaudeDir = join(projectRoot, '.claude')
+const skillTarget = join(dotClaudeDir, 'skills', SKILL_NAME)
+const commandsTarget = join(dotClaudeDir, 'commands')
 
 console.log(`\n🔨 forja-landing v${VERSION}`)
 console.log(`   The landing skill made by Carlos Domínguez\n`)
@@ -62,6 +67,17 @@ console.log(`  Installing skill to .claude/skills/${SKILL_NAME}/...`)
 mkdirSync(skillTarget, { recursive: true })
 cpSync(skillSrc, skillTarget, { recursive: true })
 console.log(`  ✓ Skill files copied.`)
+
+// ── Register /forja slash command in .claude/commands/ ────────────────────────
+// Claude Code reads custom slash commands from .claude/commands/<name>.md
+
+console.log(`  Registering /forja command in .claude/commands/...`)
+mkdirSync(commandsTarget, { recursive: true })
+cpSync(
+  join(skillSrc, 'commands', 'forja.md'),
+  join(commandsTarget, 'forja.md')
+)
+console.log(`  ✓ /forja command registered.`)
 
 // ── Optionally copy component templates into src/ ─────────────────────────────
 
