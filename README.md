@@ -1,8 +1,8 @@
 # forja-landing
 
-> *Claude Code skill que construye landings cinemáticas al nivel de [carlosdominguez.com.mx](https://carlosdominguez.com.mx).*
+> *Claude Code skill que construye landing pages cinemáticas para cualquier tipo de negocio.*
 
-Video hero con Seedance 2.0 · Crítica anti-AI-slop integrada · Auditoría web Lighthouse-style · Todo desde un comando.
+Video hero con Seedance 2.0 · Crítica anti-AI-slop integrada · Auditoría web Lighthouse-style · Secciones adaptadas a tu negocio. Todo desde un comando.
 
 ---
 
@@ -16,14 +16,26 @@ Las landings generadas por IA se ven iguales. Gradiente azul→morado, tres card
 - **Paleta ember** · dark negro profundo + amber-red solo donde importa
 - **Bento asimétrico** · service cards variadas, poster cards para destacados
 - **Video hero Seedance 2.0** · loop cinematográfico generado por IA (opcional)
+- **Section selector** · elige qué secciones incluir según tu tipo de landing
 - **Crítica automática** · review anti-AI-slop antes de shippear
 - **Auditoría integrada** · performance + a11y + SEO pre-deploy
+
+Funciona para cualquier tipo de negocio:
+
+| Tipo | Secciones incluidas |
+|------|---------------------|
+| Personal brand / consultor | Hero · ScrollStops · About · Services · Portfolio · Process · CTA |
+| SaaS / producto digital | Hero · ScrollStops · Features · Process · LeadMagnet · CTA |
+| Agencia / estudio | Hero · ScrollStops · Services · Portfolio · About · Process · CTA |
+| Producto físico | Hero · ScrollStops · Catálogo · About · CTA |
+| Curso / comunidad | Hero · ScrollStops · About · Communities · LeadMagnet · CTA |
+| Clínica / servicio local | Hero · ScrollStops · Services · Process · About · CTA |
 
 ---
 
 ## Instalación
 
-En tu proyecto Next.js 16+ (App Router):
+En tu proyecto Next.js (App Router):
 
 ```bash
 npx forja-landing init
@@ -32,8 +44,8 @@ npx forja-landing init
 Esto instala:
 
 - Skill `.claude/skills/forja-landing/` (SKILL.md + routes + templates)
-- Comandos slash `/forja build`, `/forja critique`, `/forja audit`, `/forja deploy`
-- Templates de componentes (Hero, Services, Portfolio, Process, CTA, Footer, Embers, Navbar)
+- Comandos slash `/forja build`, `/forja critique`, `/forja polish`, `/forja audit`, `/forja deploy`
+- Templates de componentes (Hero, Services, Portfolio, Process, About, LeadMagnet, Communities, CTA, Footer, Embers, Navbar)
 
 ---
 
@@ -45,12 +57,18 @@ Abre tu proyecto en [Claude Code](https://claude.ai/code):
 /forja build
 ```
 
-Claude te hace 6 preguntas (marca, posicionamiento, servicios, audiencia, CTA, vibe) y construye la landing completa.
+Claude te pregunta:
+1. **Tipo de landing** (personal brand, SaaS, agencia, producto, curso, clínica, otro)
+2. **Identidad** — nombre, posicionamiento, audiencia
+3. **Oferta** — servicios/productos, CTA primario, vibe visual
+
+Luego **propone la estructura** (secciones + headline + prompt Seedance) y espera tu OK antes de construir.
 
 Después:
 
 ```
-/forja critique   # review anti-AI-slop
+/forja critique   # review anti-AI-slop en 10 dimensiones
+/forja polish     # aplica los fixes del critique automáticamente
 /forja audit      # performance + a11y + SEO
 /forja deploy     # Vercel + custom domain
 ```
@@ -68,19 +86,26 @@ MUAPI_API_KEY=tu_key_aqui
 
 Conseguí la key en [muapi.ai](https://muapi.ai). Sin la key, el skill usa un fallback de Canvas con partículas de brasas (igual se ve bien).
 
+También podés auto-generar la imagen de referencia para Seedance:
+
+```bash
+# En tu .env.local
+OPENROUTER_API_KEY=tu_key_aqui
+```
+
 ---
 
 ## Lo que NO hace
 
-- No es un generador de contenido por IA. Vos das el copy, el skill se encarga de la estructura, tipografía, diseño, y pulido.
-- No es un boilerplate. Es una guía para Claude Code que se adapta a tu proyecto.
+- No genera el copy por vos sin input. Das la información, el skill construye la estructura, tipografía y diseño.
 - No soporta Pages Router (solo App Router).
+- No es un template estático. Es un skill para Claude Code que adapta las secciones a tu negocio.
 
 ---
 
 ## Stack asumido
 
-- Next.js 16+ (App Router)
+- Next.js 15+ (App Router)
 - React 19
 - TypeScript (strict)
 - Tailwind CSS 3.x
@@ -100,9 +125,9 @@ La landing de Carlos fue construida con este skill: [carlosdominguez.com.mx](htt
 - [x] v0.2 — Templates de componentes completos
 - [x] v0.3 — Routes completos (build, critique, audit, deploy) + script Seedance + dispatcher
 - [x] v0.4 — `/forja polish` automático + auto-gen de reference image via OpenRouter
-- [ ] v0.5 — Modo alternativo: portfolio de dev (en vez de servicios)
+- [x] v0.5 — Section selector + posicionamiento general (cualquier tipo de landing)
 - [ ] v0.6 — Plug GHL / Resend para lead-magnet delivery automatizado
-- [ ] v1.0 — Publicación en npm + launch en Show HN / Product Hunt
+- [ ] v1.0 — Launch en Show HN / Product Hunt
 
 ---
 
@@ -112,7 +137,6 @@ La landing de Carlos fue construida con este skill: [carlosdominguez.com.mx](htt
 
 - [carlosdominguez.com.mx](https://carlosdominguez.com.mx)
 - [github.com/Carlos-Dominguez-faber](https://github.com/Carlos-Dominguez-faber)
-- [Forge framework](https://github.com/Carlos-Dominguez-faber/forge)
 
 ---
 
